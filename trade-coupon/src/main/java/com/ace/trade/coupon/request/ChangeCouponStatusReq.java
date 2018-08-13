@@ -6,11 +6,11 @@ package com.ace.trade.coupon.request;
  * @Package: com.ace.trade.coupon.dto
  * @Description:
  */
-public class ChangeCouponStatusDto {
+public class ChangeCouponStatusReq {
 
     private String couponId;
 
-    private Integer userId;
+    private String isUsed;
 
     private String orderId;
 
@@ -22,12 +22,12 @@ public class ChangeCouponStatusDto {
         this.couponId = couponId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getIsUsed() {
+        return isUsed;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setIsUsed(String isUsed) {
+        this.isUsed = isUsed;
     }
 
     public String getOrderId() {

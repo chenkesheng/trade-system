@@ -1,4 +1,4 @@
-package com.ace.trade.goods.dto;
+package com.ace.trade.goods.request;
 
 /**
  * @Author: cks
@@ -6,7 +6,7 @@ package com.ace.trade.goods.dto;
  * @Package: com.ace.trade.goods.dto
  * @Description:
  */
-public class ReduceGoodsNumDto {
+public class ReduceGoodsNumReq {
     private Integer goodsId;
 
     private Integer goodsNumber;

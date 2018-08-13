@@ -1,8 +1,9 @@
 package com.ace.trade.coupon.service;
 
-import com.ace.trade.coupon.request.ChangeCouponStatusDto;
+import com.ace.trade.coupon.request.ChangeCouponStatusReq;
 import com.ace.trade.coupon.entity.TradeCoupon;
 import com.ace.trade.coupon.request.QueryCouponReq;
+import com.ace.trade.coupon.response.ChangeCouponStatusRes;
 
 /**
  * @Author: cks
@@ -14,5 +15,5 @@ public interface ICouponService {
 
     TradeCoupon findCoupon(QueryCouponReq dto);
 
-    void changeStatus(ChangeCouponStatusDto dto);
+    ChangeCouponStatusRes changeStatus(ChangeCouponStatusReq dto);
 }

@@ -19,7 +19,7 @@ public class ConfirmOrderReq implements Serializable {
 
     private Integer goodsId;
 
-    private Integer goodNumber;
+    private Integer goodsNumber;
 
     private String couponId;
 
@@ -74,12 +74,12 @@ public class ConfirmOrderReq implements Serializable {
         this.goodsId = goodsId;
     }
 
-    public Integer getGoodNumber() {
-        return goodNumber;
+    public Integer getGoodsNumber() {
+        return goodsNumber;
     }
 
-    public void setGoodNumber(Integer goodNumber) {
-        this.goodNumber = goodNumber;
+    public void setGoodsNumber(Integer goodsNumber) {
+        this.goodsNumber = goodsNumber;
     }
 
     public String getCouponId() {

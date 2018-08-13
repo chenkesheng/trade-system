@@ -17,4 +17,8 @@ public interface TradeUserMapper {
     List<TradeUser> selectAll();
 
     int updateByPrimaryKey(TradeUser record);
+
+    int reduceUserMoney(TradeUser tradeUser);
+
+    int addUserMoney(TradeUser tradeUser);
 }

@@ -1,8 +1,9 @@
 package com.ace.trade.goods.service.impl;
 
-import com.ace.trade.goods.dto.QueryGoodsDto;
-import com.ace.trade.goods.dto.ReduceGoodsNumDto;
 import com.ace.trade.goods.entity.TradeGoods;
+import com.ace.trade.goods.request.QueryGoodsReq;
+import com.ace.trade.goods.request.ReduceGoodsNumReq;
+import com.ace.trade.goods.response.ReduceGoodsNumRes;
 import com.ace.trade.goods.service.IGoodsService;
 
 /**
@@ -13,12 +14,12 @@ import com.ace.trade.goods.service.IGoodsService;
  */
 public class GoodsServiceImpl implements IGoodsService {
     @Override
-    public TradeGoods queryGoods(QueryGoodsDto dto) {
+    public TradeGoods queryGoods(QueryGoodsReq dto) {
         return null;
     }
 
     @Override
-    public void reduceGoodsNumber(ReduceGoodsNumDto dto) {
-
+    public ReduceGoodsNumRes reduceGoodsNumber(ReduceGoodsNumReq dto) {
+        return null;
     }
 }

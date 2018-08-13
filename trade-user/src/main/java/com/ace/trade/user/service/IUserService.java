@@ -4,6 +4,7 @@ package com.ace.trade.user.service;
 import com.ace.trade.user.request.ChangeUserMoneyReq;
 import com.ace.trade.user.entity.TradeUser;
 import com.ace.trade.user.request.QueryUserReq;
+import com.ace.trade.user.response.ChangeUserMoneyRes;
 
 /**
  * @Author: cks
@@ -17,5 +18,5 @@ public interface IUserService {
 
     void insert(TradeUser tradeUser);
 
-    TradeUser changeUserMoney(ChangeUserMoneyReq dto);
+    ChangeUserMoneyRes changeUserMoney(ChangeUserMoneyReq dto);
 }

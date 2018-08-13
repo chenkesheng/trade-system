@@ -1,8 +1,9 @@
 package com.ace.trade.coupon.service.impl;
 
 import com.ace.trade.coupon.entity.TradeCoupon;
-import com.ace.trade.coupon.request.ChangeCouponStatusDto;
+import com.ace.trade.coupon.request.ChangeCouponStatusReq;
 import com.ace.trade.coupon.request.QueryCouponReq;
+import com.ace.trade.coupon.response.ChangeCouponStatusRes;
 import com.ace.trade.coupon.service.ICouponService;
 
 /**
@@ -18,7 +19,7 @@ public class CouponServiceImpl implements ICouponService {
     }
 
     @Override
-    public void changeStatus(ChangeCouponStatusDto dto) {
-
+    public ChangeCouponStatusRes changeStatus(ChangeCouponStatusReq dto) {
+        return null;
     }
 }

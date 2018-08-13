@@ -1,8 +1,9 @@
 package com.ace.trade.goods.service;
 
-import com.ace.trade.goods.dto.QueryGoodsDto;
-import com.ace.trade.goods.dto.ReduceGoodsNumDto;
+import com.ace.trade.goods.request.QueryGoodsReq;
+import com.ace.trade.goods.request.ReduceGoodsNumReq;
 import com.ace.trade.goods.entity.TradeGoods;
+import com.ace.trade.goods.response.ReduceGoodsNumRes;
 
 /**
  * @Author: cks
@@ -12,7 +13,7 @@ import com.ace.trade.goods.entity.TradeGoods;
  */
 public interface IGoodsService {
 
-    TradeGoods queryGoods(QueryGoodsDto dto);
+    TradeGoods queryGoods(QueryGoodsReq dto);
 
-    void reduceGoodsNumber(ReduceGoodsNumDto dto);
+    ReduceGoodsNumRes reduceGoodsNumber(ReduceGoodsNumReq dto);
 }
