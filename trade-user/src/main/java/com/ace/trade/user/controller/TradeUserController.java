@@ -3,10 +3,10 @@ package com.ace.trade.user.controller;
 import com.ace.trade.user.entity.TradeUser;
 import com.ace.trade.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author: cks
@@ -14,22 +14,26 @@ import org.springframework.web.bind.annotation.RestController;
  * @Package: com.ace.trade.user.controller
  * @Description:
  */
-@RestController
-@RequestMapping("/")
+@RestController("/")
 public class TradeUserController {
 
     @Autowired
     private IUserService userService;
 
-    @PostMapping(value = "insert")
-    public void insert(TradeUser tradeUser){
+    @PostMapping(value = "add")
+    public Map<String,Object> insert(TradeUser tradeUser){
         tradeUser.setUserName("张三");
         tradeUser.setUserPassword("123456");
         userService.insert(tradeUser);
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("code", 200);
+        return map ;
+
     }
 
     @GetMapping(value = "findById")
     public TradeUser findById(Integer id){
+
         return userService.findUserById(id);
     }
 }
