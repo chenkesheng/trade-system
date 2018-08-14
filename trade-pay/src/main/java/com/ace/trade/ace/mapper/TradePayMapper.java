@@ -16,4 +16,6 @@ public interface TradePayMapper {
     List<TradePay> selectAll();
 
     int updateByPrimaryKey(TradePay record);
+
+    TradePay queryPay(TradePay tradePay);
 }

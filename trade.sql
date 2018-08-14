@@ -1,5 +1,5 @@
 /*
-SQLyog Ultimate v12.09 (64 bit)
+SQLyog Professional v12.09 (64 bit)
 MySQL - 5.5.28 : Database - trade
 *********************************************************************
 */
@@ -12,10 +12,6 @@ MySQL - 5.5.28 : Database - trade
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`trade` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `trade`;
-
 /*Table structure for table `trade_coupon` */
 
 DROP TABLE IF EXISTS `trade_coupon`;
@@ -25,7 +21,7 @@ CREATE TABLE `trade_coupon` (
   `coupon_price` decimal(10,2) DEFAULT NULL COMMENT '优惠卷金额',
   `user_id` int(11) DEFAULT NULL COMMENT '用户id',
   `order_id` varchar(32) DEFAULT NULL COMMENT '订单id',
-  `is_user` char(1) DEFAULT NULL COMMENT '是否使用 0.未使用 1.已使用',
+  `is_used` char(1) DEFAULT NULL COMMENT '是否使用 0.未使用 1.已使用',
   `used_time` datetime DEFAULT NULL COMMENT '使用时间',
   PRIMARY KEY (`coupon_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -62,6 +58,40 @@ CREATE TABLE `trade_goods_number_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `trade_goods_number_log` */
+
+/*Table structure for table `trade_mq_consumer_log` */
+
+DROP TABLE IF EXISTS `trade_mq_consumer_log`;
+
+CREATE TABLE `trade_mq_consumer_log` (
+  `group_name` varchar(255) NOT NULL COMMENT '消费组名',
+  `msg_tags` varchar(255) NOT NULL COMMENT '消息tag',
+  `msg_keys` varchar(255) NOT NULL COMMENT '业务Id',
+  `msg_id` varchar(255) DEFAULT NULL COMMENT '消息id',
+  `msg_body` varchar(1024) DEFAULT NULL COMMENT '消息内容',
+  `consumer_status` varchar(1) DEFAULT NULL COMMENT '消费状态 0.正在处理 1.处理成功 2.处理失败',
+  `consumer_times` int(11) DEFAULT NULL COMMENT '消费次数',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注错误原因',
+  `version` int(11) DEFAULT NULL COMMENT '乐观锁版本号控制',
+  PRIMARY KEY (`group_name`,`msg_tags`,`msg_keys`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `trade_mq_consumer_log` */
+
+/*Table structure for table `trade_mq_producer_temp` */
+
+DROP TABLE IF EXISTS `trade_mq_producer_temp`;
+
+CREATE TABLE `trade_mq_producer_temp` (
+  `group_name` varchar(255) NOT NULL COMMENT '生产者组名',
+  `msg_tag` varchar(255) NOT NULL COMMENT '消息tag',
+  `msg_keys` varchar(255) NOT NULL COMMENT '消息keys',
+  `msg_body` varchar(255) DEFAULT NULL COMMENT '消息内容',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`group_name`,`msg_tag`,`msg_keys`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `trade_mq_producer_temp` */
 
 /*Table structure for table `trade_order` */
 
@@ -120,9 +150,11 @@ CREATE TABLE `trade_user` (
   `user_reg_time` datetime DEFAULT NULL COMMENT '注册时间',
   `user_money` decimal(10,2) DEFAULT NULL COMMENT '用户余额',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `trade_user` */
+
+insert  into `trade_user`(`user_id`,`user_name`,`user_password`,`user_mobile`,`user_scope`,`user_reg_time`,`user_money`) values (1,'张三','123456',NULL,NULL,NULL,'1000.00');
 
 /*Table structure for table `trade_user_money_log` */
 
