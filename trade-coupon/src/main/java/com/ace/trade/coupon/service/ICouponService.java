@@ -13,7 +13,7 @@ import com.ace.trade.coupon.response.ChangeCouponStatusRes;
  */
 public interface ICouponService {
 
-    TradeCoupon findCoupon(QueryCouponReq dto);
+    TradeCoupon findCoupon(QueryCouponReq dto) throws Exception;
 
     ChangeCouponStatusRes changeStatus(ChangeCouponStatusReq dto);
 }

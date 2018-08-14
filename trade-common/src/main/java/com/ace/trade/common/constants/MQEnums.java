@@ -36,4 +36,34 @@ public class MQEnums {
             this.tag = tag;
         }
     }
+
+    public enum ConsumerStatusEnum {
+        PROCESSING("0", "正在处理"),
+        SUCCESS("1", "处理成功"),
+        FAIL("2", "处理失败");
+
+        ConsumerStatusEnum(String statusCode, String desc) {
+            this.statusCode = statusCode;
+            this.desc = desc;
+        }
+
+        private String statusCode;
+        private String desc;
+
+        public String getStatusCode() {
+            return statusCode;
+        }
+
+        public void setStatusCode(String statusCode) {
+            this.statusCode = statusCode;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+    }
 }

@@ -34,19 +34,19 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <table schema="trade" tableName="trade_coupon" enableCountByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" enableUpdateByExample="true"/>
-        <table schema="trade" tableName="trade_goods" enableCountByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" enableUpdateByExample="true"/>
-        <table schema="trade" tableName="trade_goods_number_log" enableCountByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true"/>
-        <table schema="trade" tableName="trade_order" enableCountByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" enableUpdateByExample="true"/>
-        <table schema="trade" tableName="trade_pay" enableCountByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" enableUpdateByExample="true"/>
-        <table schema="trade" tableName="trade_user" enableCountByExample="true" enableDeleteByExample="true"
-               enableSelectByExample="true" enableUpdateByExample="true"/>
-        <table schema="trade" tableName="trade_user_money_log" enableCountByExample="true"
+        <!--<table schema="trade" tableName="trade_coupon" enableCountByExample="true" enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true" enableUpdateByExample="true"/>-->
+        <!--<table schema="trade" tableName="trade_goods" enableCountByExample="true" enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true" enableUpdateByExample="true"/>-->
+        <!--<table schema="trade" tableName="trade_goods_number_log" enableCountByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true"/>-->
+        <!--<table schema="trade" tableName="trade_order" enableCountByExample="true" enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true" enableUpdateByExample="true"/>-->
+        <!--<table schema="trade" tableName="trade_pay" enableCountByExample="true" enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true" enableUpdateByExample="true"/>-->
+        <!--<table schema="trade" tableName="trade_user" enableCountByExample="true" enableDeleteByExample="true"-->
+               <!--enableSelectByExample="true" enableUpdateByExample="true"/>-->
+        <table schema="trade" tableName="trade_mq_consumer_log" enableCountByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true"/>
 
     </context>

@@ -72,7 +72,7 @@ public class OrderServiceImpl implements IOrderService {
 
             TradeGoods tradeGoods = goodsService.queryGoods(queryGoodsReq);
             //1.检查校验
-            checkConfirmOrderDto(dto, tradeGoods);
+            checkConfirmOrder(dto, tradeGoods);
             //2.创建不可见订单
             String orderId = saveNoConfirmOrder(dto);
             //3.调用远程服务,扣优惠券，扣库存，扣余额。如果调用成功 ->就更改订单状态为可见， 失败 ->发送mq消息，进行取消订单
@@ -84,7 +84,7 @@ public class OrderServiceImpl implements IOrderService {
         return confirmOrderRes;
     }
 
-    private void checkConfirmOrderDto(ConfirmOrderReq dto, TradeGoods tradeGoods) {
+    private void checkConfirmOrder(ConfirmOrderReq dto, TradeGoods tradeGoods) {
 
         if (dto == null) {
             throw new OrderException("下单信息不能为空.");

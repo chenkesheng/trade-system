@@ -24,7 +24,7 @@ import java.util.Date;
  * @Package: com.ace.trade.user.service
  * @Description:
  */
-@Service(interfaceClass =IUserService.class)
+@Service(interfaceClass = IUserService.class)
 public class UserApiImpl implements IUserService {
 
     @Autowired
@@ -47,10 +47,10 @@ public class UserApiImpl implements IUserService {
         changeUserMoneyRes.setResultCode(TradeEnums.ResultEnum.SUCCESS.getCode());
         changeUserMoneyRes.setResultInfo(TradeEnums.ResultEnum.SUCCESS.getDesc());
 
-        if (dto == null || dto.getUserId() == null || dto.getUserMoney() ==null){
+        if (dto == null || dto.getUserId() == null || dto.getUserMoney() == null) {
             throw new RuntimeException("请求参数不正确");
         }
-        if (dto.getUserMoney().compareTo(BigDecimal.ZERO) <= 0){
+        if (dto.getUserMoney().compareTo(BigDecimal.ZERO) <= 0) {
             throw new RuntimeException("金额不能小于0");
         }
 
@@ -64,22 +64,27 @@ public class UserApiImpl implements IUserService {
         TradeUser tradeUser = new TradeUser();
         tradeUser.setUserId(dto.getUserId());
         tradeUser.setUserMoney(dto.getUserMoney());
+
+        //查询是否有付款记录
+        TradeUserMoneyLog userMoneyLog = tradeUserMoneyLogMapper.queryTradeUserMoneyLog(dto.getOrderId(), dto.getUserId(),
+                TradeEnums.UserMoneyLogTypeEnum.PAID.getCode());
+
         //订单付款
-        if (dto.getMoneyLogType().equals(TradeEnums.UserMoneyLogTypeEnum.PAID.getCode())){
+        if (dto.getMoneyLogType().equals(TradeEnums.UserMoneyLogTypeEnum.PAID.getCode())) {
+            if (userMoneyLog != null) {
+                throw new RuntimeException("已经付过款了，不能再付款");
+            }
             tradeUserMapper.reduceUserMoney(tradeUser);
         }
         //订单退款
-        if (dto.getMoneyLogType().equals(TradeEnums.UserMoneyLogTypeEnum.REFUND.getCode())){
-            //查询是否有付款记录
-            TradeUserMoneyLog userMoneyLog = tradeUserMoneyLogMapper.queryTradeUserMoneyLog(dto.getOrderId(),dto.getUserId(),
-                    TradeEnums.UserMoneyLogTypeEnum.PAID.getCode());
-            if (userMoneyLog == null){
-                throw new RuntimeException("没有付款信息,不能退款");
+        if (dto.getMoneyLogType().equals(TradeEnums.UserMoneyLogTypeEnum.REFUND.getCode())) {
+            if (userMoneyLog == null) {
+                throw new RuntimeException("没有付款信息，不能退款");
             }
             //防止多次退款
-            TradeUserMoneyLog log = tradeUserMoneyLogMapper.queryTradeUserMoneyLog(dto.getOrderId(),dto.getUserId(),
+            TradeUserMoneyLog log = tradeUserMoneyLogMapper.queryTradeUserMoneyLog(dto.getOrderId(), dto.getUserId(),
                     TradeEnums.UserMoneyLogTypeEnum.REFUND.getCode());
-            if (log != null){
+            if (log != null) {
                 throw new RuntimeException("该订单已经退过款了,不能退款");
             }
             tradeUserMapper.addUserMoney(tradeUser);

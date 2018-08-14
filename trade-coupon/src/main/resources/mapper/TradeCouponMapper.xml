@@ -46,6 +46,23 @@
       used_time = #{usedTime,jdbcType=TIMESTAMP}
     where coupon_id = #{couponId,jdbcType=VARCHAR}
   </update>
+
+  <update id="useCoupon" parameterType="com.ace.trade.coupon.entity.TradeCoupon">
+      update trade_coupon
+      set is_used = '1' ,
+      order_id = #{orderId},
+      used_time = now()
+      where coupon_id = #{couponId} and is_used = '0'
+  </update>
+
+  <update id="unUseCoupon" parameterType="com.ace.trade.coupon.entity.TradeCoupon">
+      update trade_coupon
+      set is_used = '0' ,
+      order_id = #{orderId},
+      used_time = now()
+      where coupon_id = #{couponId}
+  </update>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--
       WARNING - @mbg.generated

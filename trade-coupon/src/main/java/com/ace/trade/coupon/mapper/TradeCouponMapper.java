@@ -17,4 +17,8 @@ public interface TradeCouponMapper {
     List<TradeCoupon> selectAll();
 
     int updateByPrimaryKey(TradeCoupon record);
+
+    int useCoupon(TradeCoupon tradeCoupon);
+
+    int unUseCoupon(TradeCoupon tradeCoupon);
 }

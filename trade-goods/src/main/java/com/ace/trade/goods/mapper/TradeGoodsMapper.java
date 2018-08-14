@@ -16,4 +16,8 @@ public interface TradeGoodsMapper {
     List<TradeGoods> selectAll();
 
     int updateByPrimaryKey(TradeGoods record);
+
+    int reduceGoodsNumber(TradeGoods tradeGoods);
+
+    int addGoodsNumber(TradeGoods tradeGoods);
 }

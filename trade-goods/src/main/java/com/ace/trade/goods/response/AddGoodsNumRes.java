@@ -1,12 +1,13 @@
-package com.ace.trade.coupon.response;
+package com.ace.trade.goods.response;
 
 /**
  * @Author: cks
- * @Date: Created by 20:07 2018/8/13
- * @Package: com.ace.trade.coupon.response
+ * @Date: Created by 14:24 2018/8/14
+ * @Package: com.ace.trade.goods.response
  * @Description:
  */
-public class ChangeCouponStatusRes {
+public class AddGoodsNumRes {
+
     private String resultCode;
 
     private String resultInfo;
