@@ -97,11 +97,13 @@ public class PayServiceImpl implements IPayService {
                 paidMQ.setPayId(tradePay.getPayId());
 
                 final TradeMqProducerTemp tradeMqProducerTemp = new TradeMqProducerTemp();
-                tradeMqProducerTemp.setGoupName("payProducerGroup");
-                tradeMqProducerTemp.setMsgTag(tradePay.getPayId());
-                tradeMqProducerTemp.setMsgKeys(MQEnums.TopicEnum.PAY_PAID.getTag());
+                tradeMqProducerTemp.setId(IDGenarator.generatorUUID());
+                tradeMqProducerTemp.setGroupName("payProducerGroup");
+                tradeMqProducerTemp.setTopic(MQEnums.TopicEnum.PAY_PAID.getTopic());
+                tradeMqProducerTemp.setMsgTag(MQEnums.TopicEnum.PAY_PAID.getTag());
+                tradeMqProducerTemp.setMsgKeys(tradePay.getPayId());
                 tradeMqProducerTemp.setMsgBody(JSON.toJSONString(paidMQ));
-                tradeMqProducerTemp.setCreatTime(new Date());
+                tradeMqProducerTemp.setCreateTime(new Date());
                 tradeMqProducerTempMapper.insert(tradeMqProducerTemp);
                 //异步发送mq消息，发送成功清空发送表
                 executorService.submit(new Runnable() {
@@ -112,10 +114,10 @@ public class PayServiceImpl implements IPayService {
                             System.out.println(sendResult);
                             if (sendResult.getSendStatus().equals(SendStatus.SEND_OK)) {
                                 TradeMqProducerTemp key = new TradeMqProducerTemp();
-                                key.setGoupName(tradeMqProducerTemp.getGoupName());
+                                key.setGroupName(tradeMqProducerTemp.getGroupName());
                                 key.setMsgTag(tradeMqProducerTemp.getMsgTag());
                                 key.setMsgKeys(tradeMqProducerTemp.getMsgKeys());
-                                tradeMqProducerTempMapper.delete(key);
+                                tradeMqProducerTempMapper.delete(key.getId());
                                 System.out.println("删除消息成功");
 
                             }

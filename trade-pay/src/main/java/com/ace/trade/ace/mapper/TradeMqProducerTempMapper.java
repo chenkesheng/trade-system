@@ -11,5 +11,5 @@ import com.ace.trade.ace.entity.TradeMqProducerTemp;
 public interface TradeMqProducerTempMapper {
     int insert(TradeMqProducerTemp record);
 
-    int delete(TradeMqProducerTemp record);
+    int delete(String id);
 }

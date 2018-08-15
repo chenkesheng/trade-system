@@ -8,6 +8,7 @@ import com.ace.trade.goods.mapper.TradeMqConsumerLogMapper;
 import com.ace.trade.goods.request.AddGoodsNumReq;
 import com.ace.trade.goods.service.IGoodsService;
 import com.alibaba.fastjson.JSON;
+import org.apache.rocketmq.common.message.MessageClientExt;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,10 @@ public class CancelOrderProcessor implements IMessageProcessor {
             String body = new String(messageExt.getBody(), "UTF-8");
             //消息id
             String msgId = messageExt.getMsgId();
+            //rocketmq3.5.8之后的版本，需要使用这个形式获取msgId,可以在监控台查询
+            if (messageExt instanceof MessageClientExt){
+                msgId = ((MessageClientExt) messageExt).getOffsetMsgId();
+            }
             //标签
             String tags = messageExt.getTags();
             //业务主键

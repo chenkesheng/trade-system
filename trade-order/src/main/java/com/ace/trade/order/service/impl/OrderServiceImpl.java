@@ -172,10 +172,10 @@ public class OrderServiceImpl implements IOrderService {
         //余额支付
         if (dto.getMoneyPaid() != null) {
             int result = dto.getMoneyPaid().compareTo(BigDecimal.ZERO);
-            if (result == -1) {
+            if (result < 0) {
                 throw new OrderException("余额金额非法");
             }
-            if (result == 1) {
+            if (result > 0) {
                 QueryUserReq queryUserReq = new QueryUserReq();
                 queryUserReq.setUserId(dto.getUserId());
                 TradeUser tradeUser = userService.findUserById(queryUserReq);
@@ -227,14 +227,15 @@ public class OrderServiceImpl implements IOrderService {
                 }
             }
             //扣余额
-            if (dto.getMoneyPaid() != null && dto.getMoneyPaid().compareTo(BigDecimal.ZERO) == 1) {
+            if (dto.getMoneyPaid() != null && dto.getMoneyPaid().compareTo(BigDecimal.ZERO) > 0) {
                 ChangeUserMoneyReq changeUserMoneyReq = new ChangeUserMoneyReq();
                 changeUserMoneyReq.setOrderId(orderId);
                 changeUserMoneyReq.setUserId(dto.getUserId());
+                changeUserMoneyReq.setUserMoney(dto.getMoneyPaid());
                 changeUserMoneyReq.setMoneyLogType(TradeEnums.UserMoneyLogTypeEnum.PAID.getCode());
                 ChangeUserMoneyRes changeUserMoneyRes = userService.changeUserMoney(changeUserMoneyReq);
                 if (!changeUserMoneyRes.getResultCode().equals(TradeEnums.ResultEnum.SUCCESS)) {
-                    throw new OrderException("口余额失败");
+                    throw new OrderException("扣减余额失败");
                 }
             }
 

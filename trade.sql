@@ -83,12 +83,13 @@ CREATE TABLE `trade_mq_consumer_log` (
 DROP TABLE IF EXISTS `trade_mq_producer_temp`;
 
 CREATE TABLE `trade_mq_producer_temp` (
+  `id` varchar(32) NOT NULL COMMENT '主键',
   `group_name` varchar(255) NOT NULL COMMENT '生产者组名',
+  `msg_topic` varchar(255) DEFAULT NULL COMMENT '消息主题',
   `msg_tag` varchar(255) NOT NULL COMMENT '消息tag',
   `msg_keys` varchar(255) NOT NULL COMMENT '消息keys',
   `msg_body` varchar(255) DEFAULT NULL COMMENT '消息内容',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`group_name`,`msg_tag`,`msg_keys`)
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `trade_mq_producer_temp` */

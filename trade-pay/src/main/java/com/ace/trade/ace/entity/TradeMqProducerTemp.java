@@ -10,7 +10,11 @@ import java.util.Date;
  */
 public class TradeMqProducerTemp {
 
-    private String goupName;
+    private String id;
+
+    private String groupName;
+
+    private String topic;
 
     private String msgTag;
 
@@ -18,14 +22,30 @@ public class TradeMqProducerTemp {
 
     private String msgBody;
 
-    private Date creatTime;
+    private Date createTime;
 
-    public String getGoupName() {
-        return goupName;
+    public String getId() {
+        return id;
     }
 
-    public void setGoupName(String goupName) {
-        this.goupName = goupName;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 
     public String getMsgTag() {
@@ -52,11 +72,11 @@ public class TradeMqProducerTemp {
         this.msgBody = msgBody;
     }
 
-    public Date getCreatTime() {
-        return creatTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

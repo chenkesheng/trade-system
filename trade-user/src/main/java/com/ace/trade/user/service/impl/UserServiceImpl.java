@@ -25,7 +25,7 @@ import java.util.Date;
  * @Description:
  */
 @Service(interfaceClass = IUserService.class)
-public class UserApiImpl implements IUserService {
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     private TradeUserMapper tradeUserMapper;
