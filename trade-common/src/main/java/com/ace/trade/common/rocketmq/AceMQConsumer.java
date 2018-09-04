@@ -27,7 +27,7 @@ public class AceMQConsumer {
 
     @Value("${rocketmq.namesrvAddr}")
     private String namesrvAddr;
-
+    @Value("${rocketmq.consumer.topic}")
     private String topic;
 
     private String tag = "*";//多个tag以||分割

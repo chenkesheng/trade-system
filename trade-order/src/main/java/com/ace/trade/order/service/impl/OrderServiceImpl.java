@@ -269,7 +269,7 @@ public class OrderServiceImpl implements IOrderService {
             cancelOrderMQ.setCouponId(dto.getCouponId());
             cancelOrderMQ.setUserMoney(dto.getMoneyPaid());
             try {
-                SendResult sendResult = this.aceMQproducer.senMessage(MQEnums.TopicEnum.ORDER_CANCEL,orderId,JSON.toJSONString(cancelOrderMQ));
+                SendResult sendResult = this.aceMQproducer.sendMessage(MQEnums.TopicEnum.ORDER_CANCEL,orderId,JSON.toJSONString(cancelOrderMQ));
                 System.out.println(sendResult);
             } catch (AceMQException ex) {
                 ex.printStackTrace();

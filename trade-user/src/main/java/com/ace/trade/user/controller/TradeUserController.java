@@ -1,6 +1,7 @@
 package com.ace.trade.user.controller;
 
 import com.ace.trade.user.entity.TradeUser;
+import com.ace.trade.user.request.QueryUserReq;
 import com.ace.trade.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,8 @@ public class TradeUserController {
     }
 
     @GetMapping(value = "findById")
-    public TradeUser findById(Integer id){
+    public TradeUser findById(QueryUserReq dto){
 
-        return userService.findUserById(id);
+        return userService.findUserById(dto);
     }
 }

@@ -59,7 +59,7 @@ public class AceMQproducer {
         }
     }
 
-    public SendResult senMessage(String topic, String tags, String keys, String messageText) throws AceMQException {
+    public SendResult sendMessage(String topic, String tags, String keys, String messageText) throws AceMQException {
 
         if (StringUtils.isBlank(topic)) {
             throw new AceMQException("topic is blank!");
@@ -78,8 +78,8 @@ public class AceMQproducer {
         }
     }
 
-    public SendResult senMessage(MQEnums.TopicEnum topicEnum, String keys, String messageText) throws AceMQException {
+    public SendResult sendMessage(MQEnums.TopicEnum topicEnum, String keys, String messageText) throws AceMQException {
 
-        return this.senMessage(topicEnum.getTopic(), topicEnum.getTag(), keys, messageText);
+        return this.sendMessage(topicEnum.getTopic(), topicEnum.getTag(), keys, messageText);
     }
 }
