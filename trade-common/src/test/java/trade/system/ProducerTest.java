@@ -27,7 +27,7 @@ public class ProducerTest {
 
     @Test
     public void testProducer() throws AceMQException {
-       SendResult result = producer.senMessage("TestTopic","order","12345678","this is order message");
+       SendResult result = producer.sendMessage("TestTopic","order","12345678","this is order message");
         System.out.println(result);
     }
 }

@@ -110,7 +110,7 @@ public class PayServiceImpl implements IPayService {
                     @Override
                     public void run() {
                         try {
-                            SendResult sendResult = aceMQproducer.senMessage(MQEnums.TopicEnum.PAY_PAID, paidMQ.getPayId(), JSON.toJSONString(paidMQ));
+                            SendResult sendResult = aceMQproducer.sendMessage(MQEnums.TopicEnum.PAY_PAID, paidMQ.getPayId(), JSON.toJSONString(paidMQ));
                             System.out.println(sendResult);
                             if (sendResult.getSendStatus().equals(SendStatus.SEND_OK)) {
                                 TradeMqProducerTemp key = new TradeMqProducerTemp();

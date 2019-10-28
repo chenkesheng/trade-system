@@ -51,6 +51,7 @@ public class CancelOrderProcessor implements IMessageProcessor {
             tradeOrderMapper.updateByPrimaryKey(tradeOrder);
             return true;
         } catch (Exception e) {
+            LOGGER.error("order CancelOrderProcessor error exception:",e.getMessage());
             e.printStackTrace();
             return false;
         }
