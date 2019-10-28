@@ -17,7 +17,7 @@ public interface TradeMqConsumerLogMapper {
 
     TradeMqConsumerLog findById(TradeMqConsumerLog record);
 
-    int inset(TradeMqConsumerLog record);
+    int insert(TradeMqConsumerLog record);
 
     int updatePrimaryKeySelective(TradeMqConsumerLog record);
 

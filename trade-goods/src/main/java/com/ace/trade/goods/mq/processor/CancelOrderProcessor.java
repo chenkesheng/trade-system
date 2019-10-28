@@ -97,6 +97,7 @@ public class CancelOrderProcessor implements IMessageProcessor {
                     mqConsumerLog.setConsumerTimes(0);
                     mqConsumerLog.setMsgBody(body);
                     mqConsumerLog.setConsumerStatus(MQEnums.ConsumerStatusEnum.PROCESSING.getStatusCode());
+                    tradeMqConsumerLogMapper.insert(mqConsumerLog);
                 }catch (Exception e){
                    LOGGER.warn("主键冲突，说明有订阅正在处理，稍后再试");
                 }
