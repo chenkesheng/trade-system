@@ -10,6 +10,8 @@ import com.ace.trade.coupon.service.ICouponService;
 import com.alibaba.dubbo.config.annotation.Service;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @Author: cks
@@ -29,36 +31,38 @@ public class CouponServiceImpl implements ICouponService {
             if (dto == null || StringUtils.isEmpty(dto.getCouponId())) {
                 throw new Exception("请求参数不正确，优惠券编号为空");
             }
+            return tradeCouponMapper.selectByPrimaryKey(dto.getCouponId());
         } catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
+            return null;
         }
-        return tradeCouponMapper.selectByPrimaryKey(dto.getCouponId());
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public ChangeCouponStatusRes changeStatus(ChangeCouponStatusReq dto) {
         ChangeCouponStatusRes changeCouponStatusRes = new ChangeCouponStatusRes();
         changeCouponStatusRes.setResultCode(TradeEnums.ResultEnum.SUCCESS.getCode());
         changeCouponStatusRes.setResultInfo(TradeEnums.ResultEnum.SUCCESS.getDesc());
         try {
-            if (dto == null || StringUtils.isEmpty(dto.getCouponId())){
+            if (dto == null || StringUtils.isEmpty(dto.getCouponId())) {
                 throw new Exception("请求参数不正确，优惠券编号为空");
             }
             TradeCoupon tradeCoupon = new TradeCoupon();
             tradeCoupon.setCouponId(dto.getCouponId());
             tradeCoupon.setOrderId(dto.getOrderId());
             //使用优惠券
-            if (dto.getIsUsed().equals(TradeEnums.YesOrNoEnum.YES.getCode())){
+            if (dto.getIsUsed().equals(TradeEnums.YesOrNoEnum.YES.getCode())) {
                 int i = tradeCouponMapper.useCoupon(tradeCoupon);
-                if (i <= 0){
+                if (i <= 0) {
                     throw new Exception("使用该优惠券失败");
                 }
 
-            }else if (dto.getIsUsed().equals(TradeEnums.YesOrNoEnum.NO.getCode())){
+            } else if (dto.getIsUsed().equals(TradeEnums.YesOrNoEnum.NO.getCode())) {
                 int i = tradeCouponMapper.unUseCoupon(tradeCoupon);
 
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             changeCouponStatusRes.setResultCode(TradeEnums.ResultEnum.FAIL.getCode());
             changeCouponStatusRes.setResultInfo(e.getMessage());
         }

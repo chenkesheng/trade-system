@@ -183,7 +183,7 @@ public class OrderServiceImpl implements IOrderService {
                     throw new Exception("用户非法");
                 }
 
-                if (tradeUser.getUserMoney().compareTo(dto.getMoneyPaid()) == -1) {
+                if (tradeUser.getUserMoney().compareTo(dto.getMoneyPaid()) < 0) {
                     throw new OrderException("余额不足");
                 }
                 tradeOrder.setMoneyPaid(dto.getMoneyPaid());
@@ -234,7 +234,7 @@ public class OrderServiceImpl implements IOrderService {
                 changeUserMoneyReq.setUserMoney(dto.getMoneyPaid());
                 changeUserMoneyReq.setMoneyLogType(TradeEnums.UserMoneyLogTypeEnum.PAID.getCode());
                 ChangeUserMoneyRes changeUserMoneyRes = userService.changeUserMoney(changeUserMoneyReq);
-                if (!changeUserMoneyRes.getResultCode().equals(TradeEnums.ResultEnum.SUCCESS)) {
+                if (!changeUserMoneyRes.getResultCode().equals(TradeEnums.ResultEnum.SUCCESS.getCode())) {
                     throw new OrderException("扣减余额失败");
                 }
             }
